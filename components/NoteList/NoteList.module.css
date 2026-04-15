@@ -38,22 +38,6 @@
   overflow: hidden;
 }
 
-.button {
-  align-self: flex-end;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #dc3545;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.button:hover {
-  background-color: #bb2d3b;
-}
-
 .footer {
   display: flex;
   justify-content: space-between;
@@ -91,4 +75,21 @@
 
 .link:hover {
   background-color: #0b5ed7;
+}
+
+.button {
+  align-self: flex-end;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 8px;
+}
+
+.button:hover {
+  background-color: #bb2d3b;
 }

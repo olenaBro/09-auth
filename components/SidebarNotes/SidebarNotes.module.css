@@ -1,23 +1,28 @@
 .menuList {
-  list-style-type: none;
-  margin: 0;
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .menuItem {
-  margin-bottom: 16px;
+  border-radius: 4px;
 }
 
 .menuLink {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
   display: block;
   padding: 8px 16px;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .menuLink:hover {
-  background-color: #444;
-  color: #ddd;
+  background-color: #e7f1ff;
+  color: #0d6efd;
 }
