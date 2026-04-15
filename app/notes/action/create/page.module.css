@@ -1,0 +1,20 @@
+.main {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 24px 0;
+}
