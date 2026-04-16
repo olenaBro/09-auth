@@ -22,7 +22,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const verify = async () => {
       try {
         const session = await checkSession();
-        if (session.success) {
+        if (session) {
           const user = await getMe();
           setUser(user);
         } else {

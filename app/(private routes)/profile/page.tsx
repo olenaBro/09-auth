@@ -1,20 +1,29 @@
-'use client';
-
+import css from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
-import { getMe } from '../../../lib/api/clientApi';
-import css from './page.module.css';
+import { getMe } from '@/lib/api/serverApi';
+import type { Metadata } from 'next';
 
-export default function ProfilePage() {
-  const { data: user, isLoading } = useQuery({
-    queryKey: ['me'],
-    queryFn: getMe,
-  });
+export const metadata: Metadata = {
+  title: 'Profile | NoteHub',
+  description: 'User profile page in NoteHub',
+  openGraph: {
+    title: 'Profile | NoteHub',
+    description: 'User profile page in NoteHub',
+    url: 'https://09-auth.vercel.app/profile',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'NoteHub',
+      },
+    ],
+  },
+};
 
-  if (isLoading) {
-    return <p>Loading, please wait...</p>;
-  }
+const ProfilePage = async () => {
+  const user = await getMe();
 
   return (
     <main className={css.mainContent}>
@@ -27,7 +36,7 @@ export default function ProfilePage() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src={user?.avatar || 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'}
+            src={user.avatar}
             alt="User Avatar"
             width={120}
             height={120}
@@ -35,10 +44,16 @@ export default function ProfilePage() {
           />
         </div>
         <div className={css.profileInfo}>
-          <p>Username: {user?.username || 'N/A'}</p>
-          <p>Email: {user?.email || 'N/A'}</p>
+          <p>
+            Username: {user.username}
+          </p>
+          <p>
+            Email: {user.email}
+          </p>
         </div>
       </div>
     </main>
   );
-}
+};
+
+export default ProfilePage;
