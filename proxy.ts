@@ -6,7 +6,7 @@ import { parse } from 'cookie';
 const privateRoutes = ['/profile', '/notes'];
 const authRoutes = ['/sign-in', '/sign-up'];
 
-export const middleware = async (request: NextRequest) => {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieStore = await cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
@@ -17,9 +17,7 @@ export const middleware = async (request: NextRequest) => {
   );
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
-
   if (!accessToken) {
-
     if (refreshToken) {
       const data = await checkSession();
       const setCookie = data.headers['set-cookie'];
@@ -47,29 +45,24 @@ export const middleware = async (request: NextRequest) => {
           return response;
         }
 
-
         if (isAuthRoute) {
           return response;
         }
       }
 
-    
       if (isPrivateRoute) {
         return NextResponse.redirect(new URL('/sign-in', request.url));
       }
     }
 
-   
     if (isPrivateRoute) {
       return NextResponse.redirect(new URL('/sign-in', request.url));
     }
 
-  
     if (isAuthRoute) {
       return NextResponse.next();
     }
   }
-
 
   if (accessToken) {
     if (isAuthRoute) {
@@ -78,7 +71,7 @@ export const middleware = async (request: NextRequest) => {
   }
 
   return NextResponse.next();
-};
+}
 
 export const config = {
   matcher: ['/profile/:path*', '/notes/:path*', '/sign-in', '/sign-up'],
